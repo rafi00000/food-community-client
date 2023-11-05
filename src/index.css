@@ -10,3 +10,7 @@
 *{
     font-family: 'Work Sans', sans-serif;
 }
+
+.primary-btn{
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500;
+}

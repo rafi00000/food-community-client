@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const navItems = (
-    <>
+    <div className="flex gap-3 flex-col lg:flex-row">
       <NavLink
         to="/"
         className={({ isActive, isPending }) =>
@@ -10,54 +10,86 @@ const Navbar = () => {
             ? "pending"
             : isActive
             ? "bg-black p-2 rounded-lg font-bold text-white"
-            : "p-2 rounded-lg font-bold"
+            : "p-2 rounded-lg font-bold border"
         }
       >
-        Messages
+        Home
       </NavLink>
       <NavLink
-        to="/"
+        to="/available-foods"
         className={({ isActive, isPending }) =>
           isPending
             ? "pending"
             : isActive
             ? "bg-black p-2 rounded-lg font-bold text-white"
-            : "p-2 rounded-lg font-bold"
+            : "p-2 rounded-lg font-bold border"
         }
       >
-        Messages
+        Available Foods
       </NavLink>
-    </>
+      <NavLink
+        to="/login"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? "pending"
+            : isActive
+            ? "bg-black p-2 rounded-lg font-bold text-white"
+            : "p-2 rounded-lg font-bold border"
+        }
+      >
+        Login / Signup
+      </NavLink>
+    </div>
   );
 
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 gap-2"
-          >
-            {navItems}
-          </ul>
+          <div className="drawer drawer-end">
+            <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content lg:hidden">
+              <label htmlFor="my-drawer-4" className="drawer-button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              </label>
+            </div>
+            <div className="drawer-side">
+              <label
+                htmlFor="my-drawer-4"
+                aria-label="close sidebar"
+                className="drawer-overlay"
+              ></label>
+              <ul className="menu p-4 w-3/4 min-h-full bg-white text-base-content">
+                {/* Sidebar content here */}
+                {navItems}
+                <div className="text-center my-7">
+                  <a className="btn">Sign Out </a>
+                </div>
+              </ul>
+            </div>
+          </div>
         </div>
-        <a className="btn btn-ghost normal-case text-xl font-black lg:text-2xl">Share Food</a>
+        {/* website logo here */}
+        <div className="flex justify-between border items-center gap-2 p-2 rounded-md">
+          <img src="https://i.ibb.co/FYVx2DX/logo.png" className='w-14' alt="" />
+        <p className="text-xl font-black lg:text-2xl primary-btn">
+          Share Food
+        </p>
+
+        </div>
       </div>
 
       <div className="navbar-center hidden lg:flex">
