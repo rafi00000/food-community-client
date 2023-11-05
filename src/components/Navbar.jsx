@@ -126,6 +126,7 @@ const Navbar = () => {
                 {/* Sidebar content here */}
                 {navItems}
                 {user ? userLinks : <button>signIn</button>}
+                
                 <div className="text-center my-7">
                   <a className="btn">Sign Out </a>
                 </div>

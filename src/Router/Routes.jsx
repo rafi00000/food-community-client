@@ -4,6 +4,7 @@ import Login from "../Pages/AuthPage/Login";
 import Register from "../Pages/AuthPage/Register";
 import PrivateRoute from "../components/PrivateRoute";
 import HomePage from "../Pages/Home/HomePage";
+import AddFood from "../Pages/AddFood/AddFood";
 
 const routes = createBrowserRouter([
     {
@@ -29,7 +30,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/add-food',
-                element: <div>add food here</div>
+                element: <PrivateRoute><AddFood></AddFood></PrivateRoute>
             },
             {
                 path: '/manage-food',
