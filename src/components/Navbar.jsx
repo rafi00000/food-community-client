@@ -1,8 +1,12 @@
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+
 
 const Navbar = () => {
+
+
   const navItems = (
-    <div className="flex gap-3 flex-col lg:flex-row">
+    <div className="flex gap-3 flex-col lg:flex-row ">
       <NavLink
         to="/"
         className={({ isActive, isPending }) =>

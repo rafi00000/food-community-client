@@ -1,31 +1,42 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
+
 
 const Register = () => {
+  const { createwithMail } = useContext(AuthContext);
 
-  const {createwithMail} = useContext(AuthContext) ;
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const url = form.url.value;
+    const email = form.email.value;
+    const password = form.password.value;
 
-    const handleRegister = (e) =>{
-        e.preventDefault();
-        const form  = e.target;
-        const name = form.name.value;
-        const url = form.url.value; 
-        const email = form.email.value;
-        const password = form.password.value;
+    const registerUser = { name, url, email, password };
 
-        const registerUser = {name, url, email, password};
+    console.log(registerUser);
 
-        console.log(registerUser);
+    createwithMail(email, password)
+      .then((data) => {
+        updateProfile(data.user, {
+          displayName: name,
+          photoURL: url,
+        }).then((data) => {
+          alert("Successfully create and updated");
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
-        createwithMail(email, password)
-        .then(data => console.log(data)).catch(err => console.log(err))
-    }
-
-    return (
-        <div className=" my-4 flex justify-center">
+  return (
+    <div className=" my-4 flex justify-center">
       <form
-        className="p-5 border w-3/4 lg:w-1/2 mx-auto my-4 space-y-4 rounded-lg"
+        className="p-5 border w-3/4 lg:w-1/2 mx-auto my-4 space-y-4 rounded-lg "
         onSubmit={handleRegister}
       >
         <h1 className="text-5xl font-bold primary-btn text-center">
@@ -72,12 +83,18 @@ const Register = () => {
         </div>
 
         <p className="text-center">
-            Already Have an account?
-          <Link to={"/login"} className="primary-btn font-bold mx-2">Login</Link>
+          Already Have an account?
+          <Link to={"/login"} className="primary-btn font-bold mx-2">
+            Login
+          </Link>
+        </p>
+        <p className="text-center space-y-2">
+          <button className=" btn btn-outline w-2/3"><FcGoogle className="text-3xl"/>Login with google</button>
+          <button className=" btn btn-outline w-2/3"><FaGithub className="text-3xl"/>Login with google</button>
         </p>
       </form>
     </div>
-    );
+  );
 };
 
 export default Register;
