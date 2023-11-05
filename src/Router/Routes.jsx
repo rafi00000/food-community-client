@@ -12,6 +12,7 @@ const routes = createBrowserRouter([
         children: [
             {
                 path: '/',
+                index: true,
                 element: <HomePage></HomePage>
             },
             {
@@ -21,6 +22,22 @@ const routes = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/available-foods',
+                element: <div>available foods here</div>
+            },
+            {
+                path: '/add-food',
+                element: <div>add food here</div>
+            },
+            {
+                path: '/manage-food',
+                element: <div>manage food here</div>
+            },
+            {
+                path: '/my-food-req',
+                element: <div>my food req here</div>
             }
         ]
     }
