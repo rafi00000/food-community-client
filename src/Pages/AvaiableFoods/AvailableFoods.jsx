@@ -9,10 +9,11 @@ const AvailableFoods = () => {
 
   // available food applied sort in the server
 
-  console.log(sort);
+  console.log(sort, search);
 
   const handleSearch = (e) =>{
-    const searchValue = e.target.value;
+    e.preventDefault();
+    const searchValue = e.target.search.value;
     setSearch(searchValue);
 }
 
@@ -28,14 +29,15 @@ const AvailableFoods = () => {
       <h3 className="text-center text-4xl font-bold primary-btn">
         Available Foods
       </h3>
-      <p className="text-right">
+      <p className="text-center md:text-right" >
+        <form onSubmit={handleSearch}>
         <input
           className="input input-bordered"
           placeholder="Search here"
           type="text"
           name="search"
-          onChange={handleSearch}
         />
+        </form> 
       </p>
 
       <select
