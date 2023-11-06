@@ -38,7 +38,7 @@ const AddFood = () => {
 
 
     // posting the data using axios--------
-    secureAxios.post("/addFood", foodInfo)
+    secureAxios.post("/foods", foodInfo)
       .then((data) => console.log(data));
   };
   return (

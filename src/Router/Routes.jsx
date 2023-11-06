@@ -5,6 +5,7 @@ import Register from "../Pages/AuthPage/Register";
 import PrivateRoute from "../components/PrivateRoute";
 import HomePage from "../Pages/Home/HomePage";
 import AddFood from "../Pages/AddFood/AddFood";
+import AvailableFoods from "../Pages/AvaiableFoods/AvailableFoods";
 
 const routes = createBrowserRouter([
     {
@@ -26,7 +27,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/available-foods',
-                element: <div>available foods here</div>
+                element: <AvailableFoods></AvailableFoods>
             },
             {
                 path: '/add-food',

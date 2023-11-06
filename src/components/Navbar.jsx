@@ -86,7 +86,7 @@ const Navbar = () => {
         My Food Requests
       </NavLink>
 
-      <button className="p-2 rounded-lg font-bold primary-bg border border-white">Sign Out</button>
+      {user && <button className="p-2 rounded-lg font-bold primary-bg border border-white">Sign Out</button>}
     </div>
   );
 
@@ -95,7 +95,7 @@ const Navbar = () => {
     return <div></div>
   }
   return (
-    <div className="navbar primary-bg rounded-lg">
+    <div className="navbar primary-bg rounded-t-lg">
       <div className="navbar-start">
         <div className="dropdown">
           <div className="drawer drawer-end">
@@ -128,10 +128,6 @@ const Navbar = () => {
                 {/* Sidebar content here */}
                 {navItems}
                 {user ? userLinks : <button>signIn</button>}
-                
-                <div className="text-center my-7">
-                  <a className="btn">Sign Out </a>
-                </div>
               </ul>
             </div>
           </div>
@@ -155,18 +151,26 @@ const Navbar = () => {
       <div className="navbar-end">
         {/* dropdown */}
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+          
+            {user ? 
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img src={user.photoURL} alt="" />
-            </div>
+            <img src={user?.photoURL} alt="" />
+          </div>
           </label>
+          :
+            <button className="p-2 rounded-md font-bold primary-bg border border-white">More</button>
+          }
+            
+          
+
           <ul
             tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2  border primary-bg rounded-lg ">
-              <p className="text-center text-xl font-bold">{user.displayName}</p>
-              <p className="text-center">{user.email}</p>
-              <div className="flex flex-col">
+              <p className="text-center text-xl font-bold">{user?.displayName}</p>
+              <p className="text-center">{user?.email}</p>
+              <div className="flex flex-col w-52">
               {
-                user ? userLinks: ''
+                user ? userLinks : userLinks
               }
               </div>
               
