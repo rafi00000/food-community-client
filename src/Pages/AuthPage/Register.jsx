@@ -7,7 +7,7 @@ import { FaGithub } from "react-icons/fa";
 
 
 const Register = () => {
-  const { createwithMail } = useContext(AuthContext);
+  const { createwithMail, googleSignIn } = useContext(AuthContext);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -90,7 +90,7 @@ const Register = () => {
         </p>
       </form>
         <p className="text-center space-y-2 flex flex-col gap-1 items-center">
-          <button className=" btn btn-outline w-2/3 md:w-2/5"><FcGoogle className="text-3xl"/>Login with Google</button>
+          <button className=" btn btn-outline w-2/3 md:w-2/5" onClick={googleSignIn}><FcGoogle className="text-3xl"/>Login with Google</button>
           <button className=" btn btn-outline w-2/3 md:w-2/5"><FaGithub className="text-3xl"/>Login with Github</button>
         </p>
     </div>

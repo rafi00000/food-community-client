@@ -12,7 +12,7 @@ const AddFood = () => {
 
     const form = e.target;
 
-    const name = form.foodName.value;
+    const name = form.foodName.value.toLowerCase();
     const foodUrl = form.foodUrl.value;
     const foodQuantity = form.foodQuantity.value;
     const location = form.location.value;

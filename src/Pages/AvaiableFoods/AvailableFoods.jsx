@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/AxiosSecure";
+import FoodCards from "./FoodCards";
 
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
   const [sort, setSort] = useState(1);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('')
   const axios = useAxiosSecure();
 
   // available food applied sort in the server
 
-  console.log(sort, search);
-
   const handleSearch = (e) =>{
     e.preventDefault();
-    const searchValue = e.target.search.value;
+    const form = e.target;
+
+    const searchValue = form.search.value;
     setSearch(searchValue);
 }
 
@@ -29,6 +30,7 @@ const AvailableFoods = () => {
       <h3 className="text-center text-4xl font-bold primary-btn">
         Available Foods
       </h3>
+      <div className="flex items-center justify-between flex-col md:flex-row-reverse">
       <p className="text-center md:text-right" >
         <form onSubmit={handleSearch}>
         <input
@@ -37,6 +39,7 @@ const AvailableFoods = () => {
           type="text"
           name="search"
         />
+        <input type="submit" value="Search" className="btn primary-bg" />
         </form> 
       </p>
 
@@ -46,10 +49,17 @@ const AvailableFoods = () => {
         onChange={(e) => setSort(e.target.value)}
         className="input input-bordered"
       >
-        <option value="1">{"Low < High"}</option>
-        <option value="-1">{"High < Low"}</option>
+        <option value="1">{"Low < High (Date)"}</option>
+        <option value="-1">{"High < Low (Date)"}</option>
       </select>
-      <div></div>
+      </div>
+      
+      {/* card section starts here */}
+      <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        {
+          foods.map(food => <FoodCards key={food._id} food={food}></FoodCards>)
+        }
+      </div>
     </div>
   );
 };
