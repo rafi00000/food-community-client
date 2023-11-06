@@ -1,14 +1,19 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Login = () => {
+
+  const {signInWithEmail} = useContext(AuthContext);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
 
     const email = form.email.value;
     const password = form.password.value;
-    const user = { email, password };
-    console.log(user);
+    signInWithEmail(email, password)
+    
   };
 
   return (
@@ -17,7 +22,7 @@ const Login = () => {
         className="p-5 border w-3/4 lg:w-1/2 mx-auto my-4 space-y-4 rounded-lg"
         onSubmit={handleLogin}
       >
-        <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500 text-center">
+        <h1 className="text-5xl font-bold primary-btn text-center">
           Login Here
         </h1>
         <div className="form-control w-full">

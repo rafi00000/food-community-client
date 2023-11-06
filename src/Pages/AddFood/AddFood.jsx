@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import axios from "axios";
+import useAxiosSecure from "../../Hooks/AxiosSecure";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
+  const secureAxios = useAxiosSecure();
 
-  const handleAddFood = (e) =>{
+  const handleAddFood = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -14,19 +17,36 @@ const AddFood = () => {
     const foodQuantity = form.foodQuantity.value;
     const location = form.location.value;
     const date = form.date.value;
-    const notes = form.notes.value ;
+    const notes = form.notes.value;
     const donatorName = form.donatorName.value;
-    const donatorEmail =form.donatorEmail.value;
+    const donatorEmail = form.donatorEmail.value;
     const donatorUrl = form.donatorUrl.value;
     const status = form.status.value;
 
-    const foodInfo = {name, foodUrl, foodQuantity, location, date, notes, donatorName, donatorEmail, donatorUrl, status};
-    console.log(foodInfo);
+    const foodInfo = {
+      name,
+      foodUrl,
+      foodQuantity,
+      location,
+      date,
+      notes,
+      donatorName,
+      donatorEmail,
+      donatorUrl,
+      status,
+    };
 
-  }
+
+    // posting the data using axios--------
+    secureAxios.post("/addFood", foodInfo)
+      .then((data) => console.log(data));
+  };
   return (
     <div>
-      <form className="p-5 border w-full lg:w-2/3 mx-auto my-4 space-y-4 rounded-lg bg-white" onSubmit={handleAddFood}>
+      <form
+        className="p-5 border w-full lg:w-2/3 mx-auto my-4 space-y-4 rounded-lg bg-white"
+        onSubmit={handleAddFood}
+      >
         <h1 className="text-5xl font-bold primary-btn text-center ">
           Add Food
         </h1>
@@ -133,8 +153,8 @@ const AddFood = () => {
           <div className="form-control w-full">
             <label className="text-xl font-semibold">Food status</label>
             <select name="status" id="" className="input input-bordered">
-                <option value={true}>Available</option>
-                <option value={false}>Not Available</option>
+              <option value={true}>Available</option>
+              <option value={false}>Not Available</option>
             </select>
           </div>
         </div>

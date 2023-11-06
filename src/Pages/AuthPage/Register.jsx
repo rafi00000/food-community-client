@@ -34,7 +34,7 @@ const Register = () => {
   };
 
   return (
-    <div className=" my-4 flex justify-center">
+    <div className=" my-4 ">
       <form
         className="p-5 border w-3/4 lg:w-1/2 mx-auto my-4 space-y-4 rounded-lg "
         onSubmit={handleRegister}
@@ -88,11 +88,11 @@ const Register = () => {
             Login
           </Link>
         </p>
-        <p className="text-center space-y-2">
-          <button className=" btn btn-outline w-2/3"><FcGoogle className="text-3xl"/>Login with google</button>
-          <button className=" btn btn-outline w-2/3"><FaGithub className="text-3xl"/>Login with google</button>
-        </p>
       </form>
+        <p className="text-center space-y-2 flex flex-col gap-1 items-center">
+          <button className=" btn btn-outline w-2/3 md:w-2/5"><FcGoogle className="text-3xl"/>Login with Google</button>
+          <button className=" btn btn-outline w-2/3 md:w-2/5"><FaGithub className="text-3xl"/>Login with Github</button>
+        </p>
     </div>
   );
 };

@@ -13,7 +13,7 @@ const Navbar = () => {
           isPending
             ? "pending"
             : isActive
-            ? "bg-black p-2 rounded-lg font-bold text-white"
+            ? "p-2 rounded-lg font-bold primary-bg border border-white"
             : "p-2 rounded-lg font-bold border"
         }
       >
@@ -25,7 +25,7 @@ const Navbar = () => {
           isPending
             ? "pending"
             : isActive
-            ? "bg-black p-2 rounded-lg font-bold text-white"
+            ? "p-2 rounded-lg font-bold primary-bg border border-white"
             : "p-2 rounded-lg font-bold border"
         }
       >
@@ -38,7 +38,7 @@ const Navbar = () => {
           isPending
             ? "pending"
             : isActive
-            ? "bg-black p-2 rounded-lg font-bold text-white"
+            ? "p-2 rounded-lg font-bold primary-bg border border-white"
             : "p-2 rounded-lg font-bold border"
         }
       >
@@ -48,14 +48,14 @@ const Navbar = () => {
   );
 
   const userLinks = (
-    <div className="flex gap-3 flex-col lg:flex-row pt-3">
+    <div className="flex gap-3 flex-col  pt-3">
       <NavLink
         to="/add-food"
         className={({ isActive, isPending }) =>
           isPending
             ? "pending"
             : isActive
-            ? "bg-black p-2 rounded-lg font-bold text-white"
+            ? "p-2 rounded-lg font-bold primary-bg border border-white"
             : "p-2 rounded-lg font-bold border"
         }
       >
@@ -67,7 +67,7 @@ const Navbar = () => {
           isPending
             ? "pending"
             : isActive
-            ? "bg-black p-2 rounded-lg font-bold text-white"
+            ? "p-2 rounded-lg font-bold primary-bg border border-white"
             : "p-2 rounded-lg font-bold border"
         }
       >
@@ -79,12 +79,14 @@ const Navbar = () => {
           isPending
             ? "pending"
             : isActive
-            ? "bg-black p-2 rounded-lg font-bold text-white"
+            ? "p-2 rounded-lg font-bold primary-bg border border-white"
             : "p-2 rounded-lg font-bold border"
         }
       >
         My Food Requests
       </NavLink>
+
+      <button className="p-2 rounded-lg font-bold primary-bg border border-white">Sign Out</button>
     </div>
   );
 
@@ -93,7 +95,7 @@ const Navbar = () => {
     return <div></div>
   }
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar primary-bg rounded-lg">
       <div className="navbar-start">
         <div className="dropdown">
           <div className="drawer drawer-end">
@@ -141,7 +143,7 @@ const Navbar = () => {
             className="w-14"
             alt=""
           />
-          <p className="text-xl font-black lg:text-2xl primary-btn">
+          <p className="text-xl font-black lg:text-2xl ">
             Share Food
           </p>
         </div>
@@ -159,8 +161,8 @@ const Navbar = () => {
             </div>
           </label>
           <ul
-            tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2  border bg-white ">
-              <p className="text-center text-xl primary-btn font-bold">{user.displayName}</p>
+            tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2  border primary-bg rounded-lg ">
+              <p className="text-center text-xl font-bold">{user.displayName}</p>
               <p className="text-center">{user.email}</p>
               <div className="flex flex-col">
               {
