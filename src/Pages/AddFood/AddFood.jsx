@@ -153,7 +153,7 @@ const AddFood = () => {
           <div className="form-control w-full">
             <label className="text-xl font-semibold">Food status</label>
             <select name="status" id="" className="input input-bordered">
-              <option value={true}>Available</option>
+              <option value={true} selected>Available</option>
               <option value={false}>Not Available</option>
             </select>
           </div>

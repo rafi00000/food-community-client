@@ -42,7 +42,7 @@ const FoodDetails = () => {
     const donatorEmail = form.donatorEmail.value;
     const reqDate = form.reqDate.value;
 
-    const reqCart = {name, foodUrl, location, date, notes, donatorName, donatorEmail, donatorUrl, reqDate, _id, email};
+    const reqCart = {name, foodUrl, location, date, notes, donatorName, donatorEmail, donatorUrl, reqDate, foodId:_id, email};
 
     if(donatorEmail === email){
       return alert('you can not request your food');
@@ -53,8 +53,9 @@ const FoodDetails = () => {
     }
 
     // making post req to db
-    axios.post('/food-req', reqCart)
+    axios.post('/foodReq', reqCart)
     .then(data => {
+      alert('success in req')
       console.log(data.data);
     })
     .catch(err => console.log(err))

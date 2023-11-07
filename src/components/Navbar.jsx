@@ -64,7 +64,7 @@ const Navbar = () => {
         Add Food
       </NavLink>
       <NavLink
-        to="/manage-food"
+        to={`/manage-food`}
         className={({ isActive, isPending }) =>
           isPending
             ? "pending"
