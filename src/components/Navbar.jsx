@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase.config";
 
 const Navbar = () => {
   const { user, loading } = useContext(AuthContext);
@@ -86,7 +88,7 @@ const Navbar = () => {
         My Food Requests
       </NavLink>
 
-      {user && <button className="p-2 rounded-lg font-bold primary-bg border border-white">Sign Out</button>}
+      {user && <button className="p-2 rounded-lg font-bold primary-bg border border-white" onClick={() => signOut(auth)}>Sign Out</button>}
     </div>
   );
 
@@ -154,7 +156,7 @@ const Navbar = () => {
           
             {user ? 
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
+            <div className="w-10 rounded-full border-2">
             <img src={user?.photoURL} alt="" />
           </div>
           </label>

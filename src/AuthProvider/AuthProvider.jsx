@@ -18,20 +18,21 @@ const AuthProvider = ({ children }) => {
 
 
   const createwithMail = (email, password) => {
-    setLoading(true)
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signInWithEmail  = (email, password) =>{
-    setLoading(true)
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   }
 
   const logOut = () =>{
+    setLoading(true);
     return signOut(auth);
   }
 
   const googleSignIn = () =>{
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   }
 
