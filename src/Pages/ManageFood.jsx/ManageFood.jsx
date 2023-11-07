@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAxiosSecure from "../../Hooks/AxiosSecure";
+import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
 
 const ManageFood = () => {
   const { user } = useContext(AuthContext);
@@ -33,9 +34,25 @@ const ManageFood = () => {
 
   const column = [
     {
-        header: 'name'
+        header: 'Name', 
+        accessorKey: 'name'
+    },
+    {
+        header: 'url', 
+        accessorKey: 'name'
+    },
+    {
+        header: 'Name', 
+        accessorKey: 'name'
+    },
+    {
+        header: 'Name', 
+        accessorKey: 'name'
     }
+    
 ];
+
+const table = useReactTable({foodData, column}) ;
   return <div></div>;
 };
 
