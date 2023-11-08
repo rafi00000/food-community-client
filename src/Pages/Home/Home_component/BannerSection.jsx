@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 const BannerSection = () => {
 
     return (
-        <motion.div className="shadow-xl border p-5 primary-bg min-h-screen flex items-center rounded-lg my-10" initial={{ opacity: 0, scale: 2 }}
+        <motion.div className="shadow-xl border p-5 primary-bg min-h-screen flex justify-around items-center rounded-lg my-10" initial={{ opacity: 0, scale: 2 }}
         animate={{ opacity: [0, 1], scale: [0.5, 1] }}
         transition={{ duration: 0.3 }}>
       <div>

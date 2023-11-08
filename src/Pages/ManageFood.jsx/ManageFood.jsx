@@ -3,6 +3,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAxiosSecure from "../../Hooks/AxiosSecure";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { ColumnSizing, flexRender, useReactTable, getCoreRowModel } from "@tanstack/react-table";
+import { Link } from 'react-router-dom';
 const ManageFood = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
@@ -16,15 +17,25 @@ const ManageFood = () => {
     });
   }, [email, axiosSecure]);
 
-  const handleEdit = (_id) =>{
-    console.log(_id);
-  } ;
+  // action buttons
 
-
+  // const handleEdit = (_id) =>{
+  //     axiosSecure.patch(`/foods/${_id}`, {})
+  //     .then(data =>{
+  //       console.log(data);
+  //     })
+  // };
 
   const handleDelete = (id) =>{
-    console.log(id);
-  }
+
+    axiosSecure.delete(`/foods/${id}`)
+    .then(data =>{
+      console.log(data.data.deletedCount);
+      const remaining = foodData.map(food => food._id !== id);
+      setFoodData(remaining);
+      window.location.reload();
+    })
+  };
   
 
   const columnDef = [
@@ -48,8 +59,8 @@ const ManageFood = () => {
       accessorKey: "_id", // Assuming "id" is the unique identifier in your JSON data
       header: "Actions",
       cell: ({row}) => <div className="">
-        <button className="btn" onClick={()=>handleEdit(row.original._id)}><AiFillEdit /></button>
-        <button className="btn" onClick={() => handleDelete(row.original._id)}><AiFillDelete /></button>
+        <Link to={`/food/update/${row.original._id}`}><button className="btn bg-green-700 text-white hover:bg-green-600"><AiFillEdit/></button></Link>
+        <button className="btn bg-red-700 text-white hover:bg-red-600" onClick={()=>handleDelete(row.original._id)}><AiFillDelete /></button>
       </div>
       },
   ] ;
@@ -68,8 +79,8 @@ const ManageFood = () => {
   return (
     <div>
       <h1 className="text-3xl font-semibold text-center primary-btn">My Food chart</h1>
-      <table id="customers">
-        <thead>
+      <table className="w-full border border-black">
+        <thead className="bg-green-600 border border-black text-white">
           {tableInstance.getHeaderGroups().map(headerEl => {
             return <tr key={headerEl.id}>
               {
@@ -87,8 +98,8 @@ const ManageFood = () => {
 
         <tbody>
           {tableInstance.getRowModel().rows.map(rowEl =>{
-            return <tr key={rowEl.id}>{rowEl.getVisibleCells().map(cellEl =>{
-              return <td key={cellEl.id}>
+            return <tr className="border border-black" key={rowEl.id}>{rowEl.getVisibleCells().map(cellEl =>{
+              return <td key={cellEl.id} className="border border-black p-3">
                 {flexRender(cellEl.column.columnDef.cell, cellEl.getContext())}
               </td>
             })}</tr>
@@ -96,30 +107,7 @@ const ManageFood = () => {
         </tbody>
       </table>
       
-      
-
-      
-      <h1 className="text-center font-bold text-5xl primary-btn">My Foods</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-12">
-        {foodData.map((food) => (
-          <div key={food._id} className="flex items-center gap-4 border">
-            <img src={food.foodUrl} alt="" className="w-52 border h-52" />
-            <div>
-              <h3 className="text-2xl">Name:{food.name}</h3>
-              <h2>Status: {food.status === "true" && "Available"}</h2>
-              <div className="flex gap-3">
-                <button className="btn primary-bg" onClick={() =>handleEdit(food._id)}>
-                  <AiFillEdit className="text-white"></AiFillEdit>
-                </button>
-                <button className="btn bg-gradient-to-r from-red-700 to-red-400">
-                  <AiFillDelete className="text-white"></AiFillDelete>
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
       </div>
-    </div>
   );
 };
 
