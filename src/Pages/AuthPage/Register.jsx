@@ -7,7 +7,7 @@ import { FaGithub } from "react-icons/fa";
 
 
 const Register = () => {
-  const { createwithMail, googleSignIn } = useContext(AuthContext);
+  const { createwithMail, googleSignIn, user } = useContext(AuthContext);
 
   const handleRegister = (e) => {
     e.preventDefault();

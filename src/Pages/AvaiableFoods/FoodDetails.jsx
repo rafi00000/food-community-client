@@ -16,10 +16,11 @@ const FoodDetails = () => {
     foodQuantity,
     date,
     _id,
-    notes,
     donatorEmail,
-    donatorUrl
+    donatorUrl,
+    status
   } = food;
+  console.log(food);
 
   const sdate = new Date();
 const currentDate = sdate.toLocaleString('en-US', { timeZone: 'Asia/Dhaka', dateStyle: 'medium', timeStyle: 'medium' });
@@ -40,7 +41,7 @@ console.log(currentDate);
     const requesterImg = user.photoURL;
     const requesterName = user.displayName;
 
-    const reqCart = {name, foodUrl, location, date, notes, donatorName, donatorEmail, donatorUrl, reqDate, foodId:_id, email, requesterImg, requesterName};
+    const reqCart = {name, foodUrl, location, date, notes, donatorName, donatorEmail, donatorUrl, reqDate, foodId:_id, email, requesterImg, requesterName, status};
 
     if(donatorEmail === email){
       return alert('you can not request your food');
@@ -66,7 +67,7 @@ console.log(currentDate);
     <div>
       <img src={foodUrl} alt="" className="w-1/3 mx-auto pt-10" />
       <h2 className="text-5xl font-bold primary-btn text-center">
-        {name.toProperCase()}
+        {name}
       </h2>
       <div className="flex justify-between primary-bg p-3 rounded-md">
         <h3 className="text-xl font-bold">Donator: {donatorName}</h3>

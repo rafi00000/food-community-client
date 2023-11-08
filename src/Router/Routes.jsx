@@ -67,11 +67,11 @@ const routes = createBrowserRouter([
         path: "/food/update/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/foods/${params.id}`),
-        element: <UpdateFood></UpdateFood>,
+        element: <PrivateRoute><UpdateFood></UpdateFood>,</PrivateRoute>
       },
       {
         path: "/manage/:id",
-        element: <ManageFoodId></ManageFoodId>,
+        element: <PrivateRoute><ManageFoodId></ManageFoodId>,</PrivateRoute>
       },
     ],
   },

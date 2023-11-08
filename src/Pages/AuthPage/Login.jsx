@@ -1,13 +1,18 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
 
-  const {signInWithEmail} = useContext(AuthContext);
+  const {signInWithEmail, user} = useContext(AuthContext);
+  
 
   const handleLogin = (e) => {
     e.preventDefault();
+    if(user){
+      return toast.error('you are already logged In')
+    }
     const form = e.target;
 
     const email = form.email.value;

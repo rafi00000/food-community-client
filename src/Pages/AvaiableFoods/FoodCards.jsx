@@ -15,18 +15,12 @@ const FoodCards = ({ food }) => {
     _id,
   } = food;
 
-  String.prototype.toProperCase = function () {
-    return this.replace(/\w\S*/g, function (txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-  };
-
   return (
     <div className="space-y-2 rounded-md border p-5 flex flex-col">
       <div>
         <img src={foodUrl} alt="" className="mx-auto h-56 border" />
         <p className="text-3xl primary-btn font-semibold text-center">
-          {name.toProperCase()}
+          {name}
         </p>
         <div className="flex justify-between items-center">
           <p className="font-semibold primary-btn text-xl">
