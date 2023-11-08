@@ -18,6 +18,9 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     signInWithEmail(email, password)
+    .then(data => {
+      console.log(data);
+    })
     
   };
 

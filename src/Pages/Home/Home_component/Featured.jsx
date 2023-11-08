@@ -4,16 +4,15 @@ import FoodCards from "../../AvaiableFoods/FoodCards";
 import { useNavigate } from "react-router-dom";
 
 const Featured = () => {
-    const axios = useAxiosSecure();
-    const sort = 1;
+    const axiosSecure = useAxiosSecure();
     const [data, setData] = useState([]);
     const navigate = useNavigate();
 
     useEffect(()=>{
-    axios
-      .get(`/foods?sort=${sort}`)
+    axiosSecure
+      .get(`/food/high`)
       .then((data) => setData(data.data.slice(0,6)));
-    }, []);
+    }, [axiosSecure]);
     
     console.log(data);
     return (

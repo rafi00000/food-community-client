@@ -10,11 +10,13 @@ import FoodDetails from "../Pages/AvaiableFoods/FoodDetails";
 import ManageFood from "../Pages/ManageFood.jsx/ManageFoods";
 import UpdateFood from "../Pages/updateFood/UpdateFood";
 import ManageFoodId from "../Pages/ManageFood.jsx/ManageFoodId";
+import ErrorPage from "../Pages/Home/Home_component/ErrorPage";
 
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <Mainlayout></Mainlayout>,
+    errorElement: <ErrorPage></ErrorPage> ,
     children: [
       {
         path: "/",
