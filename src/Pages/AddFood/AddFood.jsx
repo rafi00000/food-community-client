@@ -125,6 +125,7 @@ const AddFood = () => {
               className="input input-bordered"
               name="donatorName"
               defaultValue={user.displayName}
+              readOnly
             />
           </div>
           <div className="form-control w-full">
@@ -135,6 +136,7 @@ const AddFood = () => {
               className="input input-bordered"
               name="donatorUrl"
               defaultValue={user.photoURL}
+              readOnly
             />
           </div>
         </div>
@@ -148,11 +150,12 @@ const AddFood = () => {
               className="input input-bordered"
               name="donatorEmail"
               defaultValue={user.email}
+              readOnly
             />
           </div>
           <div className="form-control w-full">
             <label className="text-xl font-semibold">Food status</label>
-            <select name="status" id="" className="input input-bordered">
+            <select name="status" id="" className="input input-bordered" disabled>
               <option value={true} selected>Available</option>
               <option value={false}>Not Available</option>
             </select>

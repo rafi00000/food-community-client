@@ -20,14 +20,10 @@ const FoodDetails = () => {
     donatorEmail,
     donatorUrl
   } = food;
-  const currentDate = new Date().toISOString().split("T")[0];
-  String.prototype.toProperCase = function () {
-    return this.replace(/\w\S*/g, function (txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-  };
 
-
+  const sdate = new Date();
+const currentDate = sdate.toLocaleString('en-US', { timeZone: 'Asia/Dhaka', dateStyle: 'medium', timeStyle: 'medium' });
+console.log(currentDate);
 
 
   const handleReqForm = (e) =>{
@@ -41,8 +37,10 @@ const FoodDetails = () => {
     const donatorName = form.donatorName.value;
     const donatorEmail = form.donatorEmail.value;
     const reqDate = form.reqDate.value;
+    const requesterImg = user.photoURL;
+    const requesterName = user.displayName;
 
-    const reqCart = {name, foodUrl, location, date, notes, donatorName, donatorEmail, donatorUrl, reqDate, foodId:_id, email};
+    const reqCart = {name, foodUrl, location, date, notes, donatorName, donatorEmail, donatorUrl, reqDate, foodId:_id, email, requesterImg, requesterName};
 
     if(donatorEmail === email){
       return alert('you can not request your food');
@@ -168,7 +166,7 @@ const FoodDetails = () => {
             <div className="form-control w-full">
               <label className="text-xl font-semibold">Request Date</label>
               <input
-                type="date"
+                type="text"
                 placeholder="Enter Date"
                 readOnly
                 className="input input-bordered"

@@ -1,15 +1,15 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAxiosSecure from "../../Hooks/AxiosSecure";
-import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { AiFillDelete, AiFillEdit, AiOutlineSearch } from "react-icons/ai";
 import { ColumnSizing, flexRender, useReactTable, getCoreRowModel } from "@tanstack/react-table";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const ManageFood = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const email = user.email;
   const [foodData, setFoodData] = useState([]);
-
+  const navigate = useNavigate()
   useEffect(() => {
     axiosSecure.get(`/userFood?email=${email}`).then((data) => {
       console.log(data.data);
@@ -38,6 +38,7 @@ const ManageFood = () => {
   };
   
 
+
   const columnDef = [
     {
       accessorKey: 'name',
@@ -61,6 +62,7 @@ const ManageFood = () => {
       cell: ({row}) => <div className="">
         <Link to={`/food/update/${row.original._id}`}><button className="btn bg-green-700 text-white hover:bg-green-600"><AiFillEdit/></button></Link>
         <button className="btn bg-red-700 text-white hover:bg-red-600" onClick={()=>handleDelete(row.original._id)}><AiFillDelete /></button>
+        <button className="btn bg-blue-600 text-white hover:bg-blue-700" onClick={() => navigate(`/manage/${row.original._id}`)}><AiOutlineSearch /></button>
       </div>
       },
   ] ;
