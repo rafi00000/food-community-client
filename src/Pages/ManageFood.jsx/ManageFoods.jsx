@@ -2,8 +2,11 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAxiosSecure from "../../Hooks/AxiosSecure";
 import { AiFillDelete, AiFillEdit, AiOutlineSearch } from "react-icons/ai";
-import { ColumnSizing, flexRender, useReactTable, getCoreRowModel } from "@tanstack/react-table";
+import {  flexRender, useReactTable, getCoreRowModel } from "@tanstack/react-table";
 import { Link, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
+
+
 const ManageFood = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
@@ -26,15 +29,25 @@ const ManageFood = () => {
   //     })
   // };
 
-  const handleDelete = (id) =>{
+  const handleDelete = async(id) =>{
 
-    axiosSecure.delete(`/foods/${id}`)
-    .then(data =>{
-      console.log(data.data.deletedCount);
-      const remaining = foodData.map(food => food._id !== id);
-      setFoodData(remaining);
-      window.location.reload();
-    })
+    const value =await swal("Are you sure you want to delete this item?", {
+      buttons: ["No", true],
+    });
+    console.log(value);
+
+    if(value){
+      axiosSecure.delete(`/foods/${id}`)
+      .then(data =>{
+        console.log(data.data.deletedCount);
+        const remaining = foodData.map(food => food._id !== id);
+        setFoodData(remaining);
+        window.location.reload();
+      })
+    }
+    else{
+      return
+    }
   };
   
 
