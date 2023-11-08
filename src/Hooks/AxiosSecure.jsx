@@ -1,12 +1,13 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:5000',
-    withCredentials: true
-  });
+  baseURL:
+    "https://b8a11-server-side-rafi00000-3wkyattj6-nothing-team-pr.vercel.app",
+  withCredentials: true,
+});
 
 const useAxiosSecure = () => {
-    return instance;
+  return instance;
 };
 
 export default useAxiosSecure;
