@@ -40,8 +40,9 @@ console.log(currentDate);
     const reqDate = form.reqDate.value;
     const requesterImg = user.photoURL;
     const requesterName = user.displayName;
+    const donation = form.donation.value;
 
-    const reqCart = {name, foodUrl, location, date, notes, donatorName, donatorEmail, donatorUrl, reqDate, foodId:_id, email, requesterImg, requesterName, status};
+    const reqCart = {name, foodUrl, location, date, notes, donatorName, donatorEmail, donatorUrl, reqDate, foodId:_id, email, requesterImg, requesterName, status, donation};
 
     if(donatorEmail === email){
       return alert('you can not request your food');

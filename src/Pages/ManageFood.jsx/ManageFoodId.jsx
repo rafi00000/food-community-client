@@ -18,7 +18,7 @@ const ManageFoodId = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [axiosSecure, id, reqFoodData]);
+  }, [id, axiosSecure]);
 
   const handleConfirm = (reqId, foodId) =>{
     axiosSecure.patch(`/updateFood/${reqId}`, {status: 'delivered'})

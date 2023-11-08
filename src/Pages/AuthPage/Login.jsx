@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
 
@@ -11,16 +11,18 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if(user){
-      return toast.error('you are already logged In')
+      return toast.error('you are already logged In signout first')
     }
     const form = e.target;
 
     const email = form.email.value;
     const password = form.password.value;
+
     signInWithEmail(email, password)
     .then(data => {
       console.log(data);
     })
+    .catch(err => toast.error('Authentication failed'))
     
   };
 
@@ -60,6 +62,7 @@ const Login = () => {
           <Link to={"/register"} className="primary-btn font-bold">Register</Link>
         </p>
       </form>
+      <Toaster></Toaster>
     </div>
   );
 };

@@ -22,19 +22,16 @@ const AuthProvider = ({ children }) => {
   };
 
   const signInWithEmail  = (email, password) =>{
-    setLoading(true);
+    
     return signInWithEmailAndPassword(auth, email, password);
   }
 
   const logOut = () =>{
-    setLoading(true);
+    
     return signOut(auth);
   }
 
   const googleSignIn = () =>{
-    if(!user){
-      setLoading(true);
-    }
     return signInWithPopup(auth, googleProvider);
   }
 

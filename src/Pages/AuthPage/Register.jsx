@@ -4,10 +4,11 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import toast, { Toaster } from "react-hot-toast";
 
 
 const Register = () => {
-  const { createwithMail, googleSignIn, user } = useContext(AuthContext);
+  const { createwithMail, googleSignIn } = useContext(AuthContext);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -16,6 +17,18 @@ const Register = () => {
     const url = form.url.value;
     const email = form.email.value;
     const password = form.password.value;
+
+    if(!(email || password)){
+      return toast.error('Email and password should be given')
+    }
+    else if(password.length < 7){
+      return toast.error('Please give at least 8 digit')
+    }
+    else if(!(/^(?=.*[A-Z])(?=.*\d).*$/).test(password)){
+      return toast.error('please give at least one capital and one special character')
+    }
+
+
 
     const registerUser = { name, url, email, password };
 
@@ -27,7 +40,7 @@ const Register = () => {
           displayName: name,
           photoURL: url,
         }).then((data) => {
-          alert("Successfully create and updated");
+          toast.success("Successfully create and updated");
         });
       })
       .catch((err) => console.log(err));
@@ -93,6 +106,7 @@ const Register = () => {
           <button className=" btn btn-outline w-2/3 md:w-2/5" onClick={googleSignIn}><FcGoogle className="text-3xl"/>Login with Google</button>
           <button className=" btn btn-outline w-2/3 md:w-2/5"><FaGithub className="text-3xl"/>Login with Github</button>
         </p>
+        <Toaster></Toaster>
     </div>
   );
 };
