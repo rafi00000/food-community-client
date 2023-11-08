@@ -5,6 +5,7 @@ import { AiFillDelete, AiFillEdit, AiOutlineSearch } from "react-icons/ai";
 import {  flexRender, useReactTable, getCoreRowModel } from "@tanstack/react-table";
 import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import toast, { Toaster } from "react-hot-toast";
 
 
 const ManageFood = () => {
@@ -20,14 +21,6 @@ const ManageFood = () => {
     });
   }, [email, axiosSecure]);
 
-  // action buttons
-
-  // const handleEdit = (_id) =>{
-  //     axiosSecure.patch(`/foods/${_id}`, {})
-  //     .then(data =>{
-  //       console.log(data);
-  //     })
-  // };
 
   const handleDelete = async(id) =>{
 
@@ -40,6 +33,7 @@ const ManageFood = () => {
       axiosSecure.delete(`/foods/${id}`)
       .then(data =>{
         console.log(data.data.deletedCount);
+        toast.success('sucessfully deleted')
         const remaining = foodData.map(food => food._id !== id);
         setFoodData(remaining);
         window.location.reload();
@@ -121,7 +115,7 @@ const ManageFood = () => {
           })}
         </tbody>
       </table>
-      
+      <Toaster></Toaster>
       </div>
   );
 };

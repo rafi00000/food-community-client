@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/AxiosSecure";
 import { useParams } from "react-router-dom";
 import ManageFoodCard from "./ManageFoodCard";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const ManageFoodId = () => {
   const [reqFoodData, setReqFoodData] = useState([]);
@@ -24,7 +26,7 @@ const ManageFoodId = () => {
     axiosSecure.patch(`/updateFood/${reqId}`, {status: 'delivered'})
         .then(data => {
             if(data.data.modifiedCount > 0){
-                alert('successfully updated')
+                toast.success('successfully updated')
                 // deleting it after it has been delivered
 
                 const remaining = reqFoodData.filter(foodData => foodData._id !== reqId) ;
@@ -34,7 +36,7 @@ const ManageFoodId = () => {
 
                 axiosSecure.delete(`/foods/${foodId}`)
                 .then(data => {
-                    alert('successful update and deleted')
+                    toast.success('successful update and deleted')
                 })
                 .catch(err => console.log(err))
             }
@@ -51,6 +53,7 @@ const ManageFoodId = () => {
           <ManageFoodCard key={food._id} food={food} handleConfirm={handleConfirm}></ManageFoodCard>
         ))}
       </div>
+      <Toaster></Toaster>
     </div>
   );
 };

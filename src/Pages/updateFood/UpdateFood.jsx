@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAxiosSecure from './../../Hooks/AxiosSecure';
+import toast, { Toaster } from "react-hot-toast";
 
 
 const UpdateFood = () => {
@@ -10,6 +11,8 @@ const UpdateFood = () => {
     const {user} = useContext(AuthContext);
     const {date, donatorEmail, donatorName, donatorUrl, foodQuantity, foodUrl, location, name, notes, status } = foodData;
     const axiosSecure = useAxiosSecure();
+    const {id} = useParams();
+    console.log(id);
 
     const handleUpdateFood = (e) => {
         e.preventDefault();
@@ -22,9 +25,6 @@ const UpdateFood = () => {
         const location = form.location.value;
         const date = form.date.value;
         const notes = form.notes.value;
-        const donatorName = form.donatorName.value;
-        const donatorEmail = form.donatorEmail.value;
-        const donatorUrl = form.donatorUrl.value;
         const status = form.status.value;
     
         const updatedFoodInfo = {
@@ -34,14 +34,16 @@ const UpdateFood = () => {
           location,
           date,
           notes,
-          donatorName,
-          donatorEmail,
-          donatorUrl,
           status,
         };
         console.log(updatedFoodInfo);
 
-        axiosSecure.put('/foods')
+        axiosSecure.put(`/foods/${id}`, updatedFoodInfo)
+        .then(data => {
+            if(data.data.acknowledged){
+                toast.success("Successfully Updated Food")
+            }
+        })
     }
 
 
@@ -175,6 +177,7 @@ const UpdateFood = () => {
           <input type="submit" value="Update Food" className="btn btn-outline" />
         </div>
       </form>
+      <Toaster></Toaster>
     </div>
 
     );

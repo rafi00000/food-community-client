@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import axios from "axios";
 import useAxiosSecure from "../../Hooks/AxiosSecure";
+import toast, { Toaster } from "react-hot-toast";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -39,7 +40,11 @@ const AddFood = () => {
 
     // posting the data using axios--------
     secureAxios.post("/foods", foodInfo)
-      .then((data) => console.log(data));
+      .then((data) => {
+        if(data.data){
+          toast.success('Successfully Posted')
+        }
+      });
   };
   return (
     <div>
@@ -166,6 +171,7 @@ const AddFood = () => {
           <input type="submit" value="Add Food" className="btn btn-outline" />
         </div>
       </form>
+      <Toaster></Toaster>
     </div>
   );
 };

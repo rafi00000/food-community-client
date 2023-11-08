@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAxiosSecure from './../../Hooks/AxiosSecure';
+import toast, { Toaster } from "react-hot-toast";
 
 const FoodDetails = () => {
   const axios = useAxiosSecure();
@@ -55,7 +56,7 @@ console.log(currentDate);
     // making post req to db
     axios.post('/foodReq', reqCart)
     .then(data => {
-      alert('success in req')
+      toast.success('success in req')
       console.log(data.data);
     })
     .catch(err => console.log(err))
@@ -275,6 +276,7 @@ console.log(currentDate);
           </form>
         </div>
       </dialog>
+      <Toaster></Toaster>
     </div>
   );
 };
