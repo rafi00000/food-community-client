@@ -32,7 +32,8 @@ const ManageFoodId = () => {
                 const remaining = reqFoodData.filter(foodData => foodData._id !== reqId) ;
                 const updated = reqFoodData.find(foodId => foodId._id === reqId) ;
                 const newReqFoods = [ ...remaining ,updated];
-                setReqFoodData(newReqFoods)
+                setReqFoodData(newReqFoods);
+                window.location.reload();
 
                 axiosSecure.delete(`/foods/${foodId}`)
                 .then(data => {

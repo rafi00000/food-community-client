@@ -35,7 +35,7 @@ const AvailableFoods = () => {
         <form onSubmit={handleSearch}>
         <input
           className="input input-bordered"
-          placeholder="Search here"
+          placeholder="Search here (Exact match)"
           type="text"
           name="search"
         />
@@ -45,7 +45,6 @@ const AvailableFoods = () => {
 
       <select
         name="sort"
-        id=""
         onChange={(e) => setSort(e.target.value)}
         className="input input-bordered"
       >

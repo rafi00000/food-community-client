@@ -2,17 +2,15 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const Login = () => {
 
-  const {signInWithEmail, user} = useContext(AuthContext);
-  
+  const {signInWithEmail, googleSignIn, githubLogin} = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if(user){
-      return toast.error('you are already logged In signout first')
-    }
     const form = e.target;
 
     const email = form.email.value;
@@ -22,12 +20,13 @@ const Login = () => {
     .then(data => {
       console.log(data);
     })
-    .catch(err => toast.error('Authentication failed'))
+    .catch(err => toast.error('Invalid Auth Credentials'))
     
   };
 
   return (
-    <div className=" my-4 flex justify-center">
+    <div>
+      <div className=" my-4 flex justify-center">
       <form
         className="p-5 border w-3/4 lg:w-1/2 mx-auto my-4 space-y-4 rounded-lg"
         onSubmit={handleLogin}
@@ -62,7 +61,13 @@ const Login = () => {
           <Link to={"/register"} className="primary-btn font-bold">Register</Link>
         </p>
       </form>
+      
       <Toaster></Toaster>
+    </div>
+    <p className="text-center space-y-2 flex flex-col gap-1 items-center">
+          <button className=" btn btn-outline w-2/3 md:w-2/5" onClick={googleSignIn}><FcGoogle className="text-3xl"/>Login with Google</button>
+          <button className=" btn btn-outline w-2/3 md:w-2/5" onClick={githubLogin}><FaGithub className="text-3xl"/>Login with Google</button>
+        </p>
     </div>
   );
 };
