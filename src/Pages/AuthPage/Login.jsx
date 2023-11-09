@@ -4,6 +4,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const Login = () => {
 
@@ -26,6 +27,10 @@ const Login = () => {
 
   return (
     <div>
+      <HelmetProvider>
+        <Helmet>
+          <title>Share Food || Login</title>
+        </Helmet>
       <div className=" my-4 flex justify-center">
       <form
         className="p-5 border w-3/4 lg:w-1/2 mx-auto my-4 space-y-4 rounded-lg"
@@ -68,6 +73,7 @@ const Login = () => {
           <button className=" btn btn-outline w-2/3 md:w-2/5" onClick={googleSignIn}><FcGoogle className="text-3xl"/>Login with Google</button>
           <button className=" btn btn-outline w-2/3 md:w-2/5" onClick={githubLogin}><FaGithub className="text-3xl"/>Login with Google</button>
         </p>
+      </HelmetProvider>
     </div>
   );
 };

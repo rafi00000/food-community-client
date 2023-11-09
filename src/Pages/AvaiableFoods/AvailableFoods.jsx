@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/AxiosSecure";
 import FoodCards from "./FoodCards";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
@@ -26,6 +27,10 @@ const AvailableFoods = () => {
 
   return (
     <div className="p-5">
+      <HelmetProvider>
+        <Helmet>
+          <title>Share Food || Available Foods</title>
+        </Helmet>
       
       <h3 className="text-center text-4xl font-bold primary-btn">
         Available Foods
@@ -59,6 +64,7 @@ const AvailableFoods = () => {
           foods.map(food => <FoodCards key={food._id} food={food}></FoodCards>)
         }
       </div>
+      </HelmetProvider>
     </div>
   );
 };

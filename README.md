@@ -1,5 +1,5 @@
 # Food sharing community website
-live link: https://b8a11-client-side-rafi00000.vercel.app
+live link: https://labored-class.surge.sh
 
 ## Features
 1. This is a platform for sharing food it has login validation

@@ -5,6 +5,7 @@ import { updateProfile } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 
 const Register = () => {
@@ -19,16 +20,14 @@ const Register = () => {
     const password = form.password.value;
 
     if(!(email || password)){
-      return toast.error('Email and password should be given')
+      return toast.error('Email and password should be given');
     }
     else if(password.length < 7){
-      return toast.error('Please give at least 8 digit')
+      return toast.error('Please give at least 8 digit');
     }
     else if(!(/^(?=.*[A-Z])(?=.*\d).*$/).test(password)){
-      return toast.error('please give at least one capital and one special character')
+      return toast.error('please give at least one capital and one special character');
     }
-
-
 
     const registerUser = { name, url, email, password };
 
@@ -39,15 +38,20 @@ const Register = () => {
         updateProfile(data.user, {
           displayName: name,
           photoURL: url,
-        }).then((data) => {
-          toast.success("Successfully create and updated");
+        })
+        .then((data) => {
+          //
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Authentication error"));
   };
 
   return (
     <div className=" my-4 ">
+      <HelmetProvider>
+        <Helmet>
+          <title>Share Food || Register</title>
+        </Helmet>
       <form
         className="p-5 border w-3/4 lg:w-1/2 mx-auto my-4 space-y-4 rounded-lg "
         onSubmit={handleRegister}
@@ -102,11 +106,8 @@ const Register = () => {
           </Link>
         </p>
       </form>
-        <p className="text-center space-y-2 flex flex-col gap-1 items-center">
-          <button className=" btn btn-outline w-2/3 md:w-2/5" onClick={googleSignIn}><FcGoogle className="text-3xl"/>Login with Google</button>
-          <button className=" btn btn-outline w-2/3 md:w-2/5"><FaGithub className="text-3xl"/>Login with Github</button>
-        </p>
         <Toaster></Toaster>
+        </HelmetProvider>
     </div>
   );
 };

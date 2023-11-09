@@ -6,6 +6,7 @@ import {  flexRender, useReactTable, getCoreRowModel } from "@tanstack/react-tab
 import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 
 const ManageFood = () => {
@@ -14,7 +15,7 @@ const ManageFood = () => {
   const email = user.email;
   const [foodData, setFoodData] = useState([]);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     axiosSecure.get(`/userFood?email=${email}`).then((data) => {
       console.log(data.data);
@@ -88,6 +89,10 @@ const ManageFood = () => {
 
   return (
     <div>
+      <HelmetProvider>
+        <Helmet>
+          <title>Share Food || Manage Foods</title>
+        </Helmet>
       <h1 className="text-3xl font-semibold text-center primary-btn">My Food chart</h1>
       <table className="w-full border border-black">
         <thead className="bg-green-600 border border-black text-white">
@@ -117,6 +122,7 @@ const ManageFood = () => {
         </tbody>
       </table>
       <Toaster></Toaster>
+      </HelmetProvider>
       </div>
   );
 };

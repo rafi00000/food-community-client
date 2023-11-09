@@ -3,6 +3,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAxiosSecure from './../../Hooks/AxiosSecure';
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 
 const UpdateFood = () => {
@@ -49,6 +50,10 @@ const UpdateFood = () => {
 
     return (
         <div>
+          <HelmetProvider>
+        <Helmet>
+          <title>Share Food || Update</title>
+        </Helmet>
       <form
         className="p-5 border w-full lg:w-2/3 mx-auto my-4 space-y-4 rounded-lg bg-white"
         onSubmit={handleUpdateFood}
@@ -177,7 +182,9 @@ const UpdateFood = () => {
           <input type="submit" value="Update Food" className="btn btn-outline" />
         </div>
       </form>
+
       <Toaster></Toaster>
+      </HelmetProvider>
     </div>
 
     );

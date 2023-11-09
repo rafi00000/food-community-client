@@ -3,6 +3,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import axios from "axios";
 import useAxiosSecure from "../../Hooks/AxiosSecure";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -48,6 +49,10 @@ const AddFood = () => {
   };
   return (
     <div>
+      <HelmetProvider>
+        <Helmet>
+          <title>Share Food || Add Food</title>
+        </Helmet>
       <form
         className="p-5 border w-full lg:w-2/3 mx-auto my-4 space-y-4 rounded-lg bg-white"
         onSubmit={handleAddFood}
@@ -172,6 +177,7 @@ const AddFood = () => {
         </div>
       </form>
       <Toaster></Toaster>
+      </HelmetProvider>
     </div>
   );
 };

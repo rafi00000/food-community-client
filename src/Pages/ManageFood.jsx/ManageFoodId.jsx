@@ -3,6 +3,7 @@ import useAxiosSecure from "../../Hooks/AxiosSecure";
 import { useParams } from "react-router-dom";
 import ManageFoodCard from "./ManageFoodCard";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 
 const ManageFoodId = () => {
@@ -45,6 +46,10 @@ const ManageFoodId = () => {
 
   return (
     <div>
+      <HelmetProvider>
+        <Helmet>
+          <title>Share Food || Manage Food</title>
+        </Helmet>
       <h2 className="text-5xl font-bold primary-btn text-center">
         Food Request
       </h2>
@@ -54,6 +59,7 @@ const ManageFoodId = () => {
         ))}
       </div>
       <Toaster></Toaster>
+      </HelmetProvider>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAxiosSecure from './../../Hooks/AxiosSecure';
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const FoodDetails = () => {
   const axios = useAxiosSecure();
@@ -68,6 +69,10 @@ console.log(currentDate);
   
   return (
     <div>
+      <HelmetProvider>
+        <Helmet>
+          <title>Share Food || Detail</title>
+        </Helmet>
       <img src={foodUrl} alt="" className="w-1/3 mx-auto pt-10" />
       <h2 className="text-5xl font-bold primary-btn text-center">
         {name}
@@ -278,6 +283,7 @@ console.log(currentDate);
         </div>
       </dialog>
       <Toaster></Toaster>
+      </HelmetProvider>
     </div>
   );
 };

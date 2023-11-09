@@ -4,6 +4,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import FoodreqCard from "./FoodreqCard";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 
 const MyFoodReqPage = () => {
@@ -35,10 +36,15 @@ const MyFoodReqPage = () => {
 
     return (
         <div className="grid grid-cols-2 gap-4 my-10">
+            <HelmetProvider>
+        <Helmet>
+          <title>Share Food || Food Req</title>
+        </Helmet>
             {
                 userFood.map(food => <FoodreqCard key={food._id} food={food} handleCancelReq={handleCancelReq}></FoodreqCard>)
             }
             <Toaster></Toaster>
+            </HelmetProvider>
         </div>
     );
 };
