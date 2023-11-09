@@ -26,9 +26,8 @@ const ManageFoodId = () => {
     axiosSecure.patch(`/updateFood/${reqId}`, {status: 'delivered'})
         .then(data => {
             if(data.data.modifiedCount > 0){
-                toast.success('successfully updated')
-                // deleting it after it has been delivered
 
+                // deleting it after it has been delivered
                 const remaining = reqFoodData.filter(foodData => foodData._id !== reqId) ;
                 const updated = reqFoodData.find(foodId => foodId._id === reqId) ;
                 const newReqFoods = [ ...remaining ,updated];

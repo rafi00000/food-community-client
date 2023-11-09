@@ -13,7 +13,8 @@ const ManageFood = () => {
   const axiosSecure = useAxiosSecure();
   const email = user.email;
   const [foodData, setFoodData] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  
   useEffect(() => {
     axiosSecure.get(`/userFood?email=${email}`).then((data) => {
       console.log(data.data);

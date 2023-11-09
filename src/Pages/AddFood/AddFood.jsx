@@ -15,7 +15,7 @@ const AddFood = () => {
 
     const name = form.foodName.value.toLowerCase();
     const foodUrl = form.foodUrl.value;
-    const foodQuantity = form.foodQuantity.value;
+    const foodQuantity = parseInt(form.foodQuantity.value);
     const location = form.location.value;
     const date = form.date.value;
     const notes = form.notes.value;
@@ -36,7 +36,7 @@ const AddFood = () => {
       donatorUrl,
       status,
     };
-
+    console.log(foodInfo);
 
     // posting the data using axios--------
     secureAxios.post("/foods", foodInfo)

@@ -48,11 +48,10 @@ console.log(currentDate);
     console.log(reqCart);
 
     if(donatorEmail === email){
-      return alert('you can not request your food');
+      return toast.error('you can not request your food');
     }
     else if(foodQuantity < 1){
-      //
-      return alert('this food is finished');
+      return toast.error('this food is finished');
     }
 
     // making post req to db
