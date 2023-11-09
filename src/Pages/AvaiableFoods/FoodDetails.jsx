@@ -8,6 +8,7 @@ const FoodDetails = () => {
   const axios = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const food = useLoaderData();
+  console.log(food);
   const { email } = user;
   const {
     name,
@@ -44,6 +45,7 @@ console.log(currentDate);
     const donation = form.donation.value;
 
     const reqCart = {name, foodUrl, location, date, notes, donatorName, donatorEmail, donatorUrl, reqDate, foodId:_id, email, requesterImg, requesterName, status, donation};
+    console.log(reqCart);
 
     if(donatorEmail === email){
       return alert('you can not request your food');

@@ -59,7 +59,7 @@ const routes = createBrowserRouter([
       {
         path: "/food/:id",
         loader: ({ params }) =>
-          fetch(`https://b8a11-server-side-rafi00000-3wkyattj6-nothing-team-pr.vercel.app/foods/${params.id}`),
+          fetch(`https://b8a11-server-side-rafi00000.vercel.app/foods/${params.id}`),
         element: (
           <PrivateRoute>
             <FoodDetails></FoodDetails>
@@ -69,7 +69,7 @@ const routes = createBrowserRouter([
       {
         path: "/food/update/:id",
         loader: ({ params }) =>
-          fetch(`https://b8a11-server-side-rafi00000-3wkyattj6-nothing-team-pr.vercel.app/foods/${params.id}`),
+          fetch(`https://b8a11-server-side-rafi00000.vercel.app/foods/${params.id}`),
         element: <PrivateRoute><UpdateFood></UpdateFood>,</PrivateRoute>
       },
       {

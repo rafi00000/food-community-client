@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from './../../Hooks/AxiosSecure';
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import FoodreqCard from "./FoodreqCard";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 
 const MyFoodReqPage = () => {
@@ -14,14 +16,29 @@ const MyFoodReqPage = () => {
         .then(data => {
             setUserFood(data.data);
         })
-    }, [])
+    }, [user.email, axiosSecure])
     console.log(userFood);
+
+    const handleCancelReq = (id) =>{
+        console.log(id);
+
+        axiosSecure.delete(`/foodsReq/${id}`)
+        .then(data =>{
+            if(data.data){
+                toast.success('deleted successfully');
+            }
+            const remaining = userFood.filter(food => food._id !== id);
+            setUserFood(remaining)
+        })
+
+    } ;
 
     return (
         <div className="grid grid-cols-2 gap-4 my-10">
             {
-                userFood.map(food => <FoodreqCard key={food._id} food={food}></FoodreqCard>)
+                userFood.map(food => <FoodreqCard key={food._id} food={food} handleCancelReq={handleCancelReq}></FoodreqCard>)
             }
+            <Toaster></Toaster>
         </div>
     );
 };
