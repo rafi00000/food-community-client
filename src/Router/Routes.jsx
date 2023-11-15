@@ -17,7 +17,7 @@ const routes = createBrowserRouter([
   {
     path: "/",
     element: <Mainlayout></Mainlayout>,
-    errorElement: <ErrorPage></ErrorPage> ,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -54,12 +54,16 @@ const routes = createBrowserRouter([
       },
       {
         path: "/my-food-req",
-        element: <PrivateRoute><MyFoodReqPage></MyFoodReqPage></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyFoodReqPage></MyFoodReqPage>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/food/:id",
         loader: ({ params }) =>
-          fetch(`https://b8a11-server-side-rafi00000.vercel.app/foods/${params.id}`),
+          fetch(`https://food-server-rouge.vercel.app/foods/${params.id}`),
         element: (
           <PrivateRoute>
             <FoodDetails></FoodDetails>
@@ -69,12 +73,20 @@ const routes = createBrowserRouter([
       {
         path: "/food/update/:id",
         loader: ({ params }) =>
-          fetch(`https://b8a11-server-side-rafi00000.vercel.app/foods/${params.id}`),
-        element: <PrivateRoute><UpdateFood></UpdateFood>,</PrivateRoute>
+          fetch(`https://food-server-rouge.vercel.app/foods/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <UpdateFood></UpdateFood>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/manage/:id",
-        element: <PrivateRoute><ManageFoodId></ManageFoodId>,</PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <ManageFoodId></ManageFoodId>,
+          </PrivateRoute>
+        ),
       },
     ],
   },
