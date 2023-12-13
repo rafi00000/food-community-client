@@ -5,7 +5,6 @@ import {
   signOut,
   GoogleAuthProvider, 
   signInWithPopup,
-  signInWithRedirect,
   GithubAuthProvider
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
