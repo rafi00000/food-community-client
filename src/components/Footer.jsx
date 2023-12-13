@@ -1,4 +1,5 @@
 import React from "react";
+import FeedbackForm from "./FeedbackForm";
 
 const Footer = () => {
   return (
@@ -16,6 +17,9 @@ const Footer = () => {
           <a className="link link-hover">Terms of use</a>
           <a className="link link-hover">Privacy policy</a>
           <a className="link link-hover">Cookie policy</a>
+        </nav>
+        <nav>
+          <FeedbackForm></FeedbackForm>
         </nav>
       </footer>
       <footer className="footer px-10 py-4 border-t primary-bg rounded-b-xl">
