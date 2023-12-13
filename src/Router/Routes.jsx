@@ -12,6 +12,7 @@ import UpdateFood from "../Pages/updateFood/UpdateFood";
 import ManageFoodId from "../Pages/ManageFood.jsx/ManageFoodId";
 import ErrorPage from "../Pages/Home/Home_component/ErrorPage";
 import MyFoodReqPage from "../Pages/Myfoodreq/MyFoodReqPage";
+import LeaderBoard from "../Pages/leaderboard/LeaderBoard";
 
 const routes = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/leaderboard",
+        element: <LeaderBoard></LeaderBoard>
+      }
     ],
   },
 ]);
