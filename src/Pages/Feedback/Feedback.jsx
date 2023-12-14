@@ -15,8 +15,9 @@ const Feedback = () => {
     }, [axiosSecure]);
 
     return (
-        <div className="my-10">
-            <div className="grid grid-cols-2 md:grid-cols-4">
+        <div className="my-10 space-y-5">
+            <h2 className="primary-btn">Feedback</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                 {
                     feedback?.map(user => <div className="p-5 border shadow-xl rounded-lg" key={user?.email}>
                         <p>Name: {user?.name}</p>
