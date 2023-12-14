@@ -18,7 +18,7 @@ const LeaderBoard = () => {
           <tr>
             <th>Sl.</th>
             <th>Email</th>
-            <th>Total Donate</th>
+            <th>Total Donation Count</th>
           </tr>
         </thead>
         <tbody>

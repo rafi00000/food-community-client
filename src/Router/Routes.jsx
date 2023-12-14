@@ -13,6 +13,7 @@ import ManageFoodId from "../Pages/ManageFood.jsx/ManageFoodId";
 import ErrorPage from "../Pages/Home/Home_component/ErrorPage";
 import MyFoodReqPage from "../Pages/Myfoodreq/MyFoodReqPage";
 import LeaderBoard from "../Pages/leaderboard/LeaderBoard";
+import Feedback from "../Pages/Feedback/Feedback";
 
 const routes = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ const routes = createBrowserRouter([
       {
         path: "/leaderboard",
         element: <LeaderBoard></LeaderBoard>
+      },
+      {
+        path: '/feedback', 
+        element: <Feedback></Feedback>
       }
     ],
   },

@@ -87,6 +87,18 @@ const Navbar = () => {
       >
         My Food Requests
       </NavLink>
+      <NavLink
+        to="/leaderboard"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? "pending"
+            : isActive
+            ? "p-2 rounded-lg font-bold primary-bg border border-white"
+            : "p-2 rounded-lg font-bold border"
+        }
+      >
+        Leaderboard
+      </NavLink>
 
       {user && <button className="p-2 rounded-lg font-bold primary-bg border border-white" onClick={() => signOut(auth)}>Sign Out</button>}
     </div>
